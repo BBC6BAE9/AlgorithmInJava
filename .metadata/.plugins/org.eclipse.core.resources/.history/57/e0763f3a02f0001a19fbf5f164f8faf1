@@ -1,19 +1,19 @@
 package com.bbc6bae9;
 
-public class ArrayList<E> {
+public class ArrayList {
 
 	// 元素的数量
 	private int size;
 
 	// 所有的数组
-	private E[] elements;
+	private int[] elements;
 	private static final int DEFAULT_CAPACITY = 10;
 	private static final int ELEMENT_NOT_FOUND = -1;
 
-	// 构造函数 - 参数 
+	// 构造函数 - 参数
 	public ArrayList(int capaticy) {
 		capaticy = (capaticy < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capaticy;
-		elements = (E[]) new Object[capaticy];
+		elements = new int[capaticy];
 	}
 
 	// 构造函数 - 无参	
@@ -39,12 +39,12 @@ public class ArrayList<E> {
 	}
 	
 	// 在数组末尾添加元素
-	public void add(E element) {
+	public void add(int element) {
 		add(size, element);
 	}
 	
 	// 在index的位置插入一个元素，需要扩容
-	public void add(int index, E element) {
+	public void add(int index, int element) {
 		rangeCheckForAdd(index);
 		ensureCapacity(size + 1);
 		for (int i = size -1; i >= index; i--) {
@@ -60,15 +60,15 @@ public class ArrayList<E> {
 	}
 	
 	// 获取index位置的元素
-	public E get(int index) {
+	public int get(int index) {
 		rangeCheck(index);
 		return elements[index];
 	}
 	
 	// 设置index位置的元素 
-	public E set(int index, E element) {
+	public int set(int index, int element) {
 		rangeCheck(index);
-		E old = elements[index];
+		int old = elements[index];
 		elements[index] = element;
 		return old;
 	}
@@ -83,7 +83,7 @@ public class ArrayList<E> {
 		}
 	}
 	
-	public int indexOf(E element) {
+	public int indexOf(int element) {
 		for (int i = 0; i < size; i++) {
 			if (elements[i] == element) return i;
 		}
@@ -126,10 +126,9 @@ public class ArrayList<E> {
 	private void ensureCapacity(int capacity) {
 		int oldCap = elements.length;
 		if (oldCap >= capacity) return;
-		// 扩容系数的问题：iOS平台系数是1.6，Java官方的是1.5，但是写法需要注意，乘以浮点数性能要差一些，所以用位移，左移动是X2，右移是/2,位运算效率特别高
+		// iOS平台系数是1.6，Java官方的是1.5，但是写法需要注意，乘以浮点数性能要差一些，所以用位移，左移动是X2，右移是/2,位运算效率特别高
 		int newCap = oldCap + (oldCap >> 1);
-//		E[] newElements = new E[newCap];
-		E[] newElements = (E[]) new Object[newCap];
+		int[] newElements = new int[newCap];
 		for (int i = 0; i < size; i++) {
 			newElements[i] = elements[i];
 		}
