@@ -133,6 +133,6 @@ public class ArrayList {
 			newElements[i] = elements[i];
 		}
 		elements = newElements;
-		System.out.print("扩容\n"); 
+		System.out.print("扩容"); 
 	}
 }

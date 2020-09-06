@@ -1,5 +1,7 @@
 package com.bbc6bae9;
 
+import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+
 public class ArrayList {
 
 	// 元素的数量
@@ -133,6 +135,6 @@ public class ArrayList {
 			newElements[i] = elements[i];
 		}
 		elements = newElements;
-		System.out.print("扩容\n"); 
+		System.out.print("扩容"); 
 	}
 }
