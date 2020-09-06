@@ -47,15 +47,6 @@ public class ArrayList {
 		// 扩展容量的问题暂时不考虑
 	}
 	
-	// 在index的位置插入一个元素
-	public void add(int index, int element) {
-		for (int i = size -1; i >= index; i--) {
-			elements[i + 1] = elements[i]; 
-		}
-		elements[index] = element;
-		size ++;
-	}
-		
 	// 是否包含某个元素
 	public boolean contains(int element) {
 		return false;

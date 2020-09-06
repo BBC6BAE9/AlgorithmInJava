@@ -14,7 +14,6 @@ public class Main {
 		list.add(22);
 		list.add(33);
 		list.add(99);
-		list.add(0, 100);
 		System.out.println(list);
 				
 	}
