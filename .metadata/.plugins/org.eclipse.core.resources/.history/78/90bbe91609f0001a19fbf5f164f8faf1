@@ -11,7 +11,6 @@ public class ArrayList<E> {
 	private static final int ELEMENT_NOT_FOUND = -1;
 
 	// 构造函数 - 参数 
-	@SuppressWarnings("unchecked")
 	public ArrayList(int capaticy) {
 		capaticy = (capaticy < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capaticy;
 		elements = (E[]) new Object[capaticy];
@@ -25,11 +24,7 @@ public class ArrayList<E> {
 		
 	// 清除数组
 	public void clear() {
-		//️ ⚠️ 只要是size控制住了，在使用方看来，已经是clear了，销毁空间和申请空间都是耗时的，这种做法才是性能最好的，如果元素是对象，就是还是需要清除内存
-		// 元素是对象的时候才需要这么做
-		for (int i = 0; i < size; i++) {
-			elements[i] = null;
-		}
+		//️ ⚠️ 只要是size控制住了，在使用方看来，已经是clear了，销毁空间和申请空间都是耗时的，这种做法才是性能最好的
 		size = 0;
 	}
 
@@ -84,13 +79,13 @@ public class ArrayList<E> {
 		// 把index后面的元素都往前移动一个位置，并且size--，最后一个元素可以不处理，因为我们有size控制
 		for (int i = index + 1; i < size -1; i++) {
 			elements[i - 1] = elements[i];
+			size--;
 		}
-		elements[size--] = null;
 	}
 	
 	public int indexOf(E element) {
 		for (int i = 0; i < size; i++) {
-			if (elements[i].equals(element)) return i;
+			if (elements[i] == element) return i;
 		}
 		return ELEMENT_NOT_FOUND;
 	}
@@ -128,18 +123,16 @@ public class ArrayList<E> {
 	}
 	
 	// 保证有capacity的容量
-	@SuppressWarnings("unchecked")
 	private void ensureCapacity(int capacity) {
-		// 扩容系数的问题：iOS平台系数是1.6，Java官方的是1.5，但是写法需要注意，乘以浮点数性能要差一些，所以用位移，左移动是X2，右移是/2,位运算效率特别高
 		int oldCap = elements.length;
 		if (oldCap >= capacity) return;
-		int newCap = oldCap + (oldCap >> 1); // 按照系数扩容
+		// 扩容系数的问题：iOS平台系数是1.6，Java官方的是1.5，但是写法需要注意，乘以浮点数性能要差一些，所以用位移，左移动是X2，右移是/2,位运算效率特别高
+		int newCap = oldCap + (oldCap >> 1);
+//		E[] newElements = new E[newCap];
 		E[] newElements = (E[]) new Object[newCap];
-		
 		for (int i = 0; i < size; i++) {
 			newElements[i] = elements[i];
 		}
-		
 		elements = newElements;
 		System.out.print("扩容\n"); 
 	}
