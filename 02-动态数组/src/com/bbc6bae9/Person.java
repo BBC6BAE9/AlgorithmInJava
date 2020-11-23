@@ -16,6 +16,12 @@ public class Person {
 		return "Person [age=" + age + ", name=" + name + "]";
 	}
 	
+	// java里面提供的重写方法
+	@Override
+	public boolean equals(Object obj) {
 
+		Person person = (Person) obj;
+		return this.age == person.name;
+	}
 }
  

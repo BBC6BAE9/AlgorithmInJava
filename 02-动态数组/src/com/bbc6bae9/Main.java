@@ -11,9 +11,12 @@ public class Main {
 		
 		ArrayList<Person> persons = new ArrayList<Person>();
 		
-		persons.add(new Person(10,"huaghong"));
-		persons.add(new Person(10,"zhoujielun"));
-		persons.add(new Person(10,"linjunjie"));
+		persons.add(new Person(10,"Jack"));
+		persons.add(new Person(10,"Rose"));
+		persons.add(new Person(10,"Philip"));
+		
+		// 提醒JVM进行垃圾回收,Java虚拟机当在内存不够用的时候，会检查有哪些可以回收的内存
+		System.gc();
 		System.out.println(persons);
 				
 	}
